@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/template/v1.0.0/schema.json#",
-  "title": "Template Extension",
-  "description": "STAC Template Extension for STAC Items and STAC Collections.",
+  "$id": "https://stac-extensions.github.io/scientific/v1.0.0/schema.json#",
+  "title": "Scientific Citation Extension",
+  "description": "STAC Scientific Citation Extension for STAC Items and STAC Collections.",
   "oneOf": [
     {
       "$comment": "This is the schema for STAC Items.",
@@ -21,10 +21,7 @@
             "properties": {
               "allOf": [
                 {
-                  "$comment": "Require fields here for item properties.",
-                  "required": [
-                    "template:new_field"
-                  ]
+                  "$ref": "#/definitions/requirements"
                 },
                 {
                   "$ref": "#/definitions/fields"
@@ -71,8 +68,10 @@
           }
         },
         {
-          "$comment": "Remove this and the following object if this is not an extension to a Collection.",
           "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/requirements"
         },
         {
           "$ref": "#/definitions/fields"
@@ -90,7 +89,10 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "https://stac-extensions.github.io/template/v1.0.0/schema.json"
+            "enum": [
+              "scientific",
+              "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/scientific/json-schema/schema.json"
+            ]
           }
         }
       }
@@ -99,41 +101,45 @@
       "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
       "type": "object",
       "properties": {
-        "template:new_field": {
-          "type": "string"
-        },
-        "template:xyz": {
-          "type": "object",
-          "required": [
-            "x",
-            "y",
-            "z"
-          ],
-          "properties": {
-            "x": {
-              "type": "number"
-            },
-            "y": {
-              "type": "number"
-            },
-            "z": {
-              "type": "number"
-            }
-          }
+        "sci:doi": {
+          "type": "string",
+          "title": "Data DOI",
+          "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
         }, 
-        "template:another_one": {
-          "type": "array", 
+        "sci:citation": {
+          "type": "string", 
+          "title": "Proposed Data Citation"
+        },
+        "sci:publications": {
+          "type": "array",
+          "title": "Publications",
           "items": {
-            "type": "number"
+            "type": "object",
+            "properties": {
+              "doi": {
+                "type": "string",
+                "title": "Publication DOI",
+                "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
+              }, 
+              "citation": { 
+                "type": "string", 
+                "title": "Publication Citation"
+              }
+            }
           }
         }
       },
       "patternProperties": {
-        "^(?!template:)": {
-          "$comment": "Above, change `template` to the prefix of this extension"
-        }
+        "^(?!sci:)": {}
       },
       "additionalProperties": false
+    },
+    "requirements": {
+      "anyOf": [
+        {"required": ["sci:doi"]},
+        {"required": ["sci:citation"]},
+        {"required": ["sci:publications"]}
+      ]
     }
   }
 }
