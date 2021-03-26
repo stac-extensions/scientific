@@ -89,10 +89,9 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "enum": [
-              "scientific",
-              "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/scientific/json-schema/schema.json"
-            ]
+            "contains": {
+              "const": "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+            }
           }
         }
       }

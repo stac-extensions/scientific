@@ -4,7 +4,7 @@
 - **Identifier:** <https://stac-extensions.github.io/scientific/v1.0.0/schema.json>
 - **Field Name Prefix: sci**
 - **Scope: Item, Collection**
-- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/README.md#extension-maturity): Proposal**
 - **Owner**: @m-mohr
 
 This extension adds the ability to indicate from which publication data originates and how
@@ -15,11 +15,14 @@ persistent digital interoperable identifier that uniquely identify for digital p
 can be registered at registration agencies affiliated with the
 [International DOI Foundation](https://www.doi.org/).
 
-This extension applies to STAC [Item](../../item-spec/item-spec.md) and STAC [Collections](../../collection-spec/collection-spec.md).
+This extension applies to STAC [Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md)
+and STAC [Collections](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md).
 As these citation information are often closely bound to the Collection level and therefore are shared across all items,
 it is recommended adding the fields to the corresponding Collection.
 
-- Examples: [Collection](examples/collection.json), [Item](examples/item.json)
+- Examples:
+    - [Collection](examples/collection.json)
+    - [Item](examples/item.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item and Collection Fields
@@ -53,12 +56,9 @@ required to find the publication distinctively.
 
 ## Relation types
 
-This extension adds the following types as applicable `rel` types for the [Link Object](../../item-spec/item-spec.md#link-object):
+This extension adds the following types as applicable `rel` types for the 
+[Link Object](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#link-object):
 
 | Type    | Description |
 | ------- | ----------- |
 | cite-as | A DOI link SHOULD be added to the links section for the publication referenced by the `sci:doi` property with the `rel` type `cite-as` (see the [RFC 8574](https://tools.ietf.org/html/rfc8574)). |
-
-## Implementations
-
-None yet, still in proposal stage.
