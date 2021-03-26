@@ -21,8 +21,8 @@ As these citation information are often closely bound to the Collection level an
 it is recommended adding the fields to the corresponding Collection.
 
 - Examples:
-    - [Collection](examples/collection.json)
-    - [Item](examples/item.json)
+  - [Collection](examples/collection.json)
+  - [Item](examples/item.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item and Collection Fields
