@@ -4,7 +4,7 @@
 - **Identifier:** <https://stac-extensions.github.io/scientific/v1.0.0/schema.json>
 - **Field Name Prefix:** sci
 - **Scope:** Item, Collection
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/README.md#extension-maturity):** Proposal
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/README.md#extension-maturity):** Stable
 - **Owner**: @m-mohr
 
 This document explains the Scientific Extension to the
