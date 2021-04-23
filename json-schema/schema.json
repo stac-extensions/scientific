@@ -43,22 +43,52 @@
     },
     {
       "$comment": "This is the schema for STAC Collections.",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "Collection"
+        }
+      },
       "allOf": [
         {
-          "type": "object",
+          "$ref": "#/definitions/stac_extensions"
+        }
+      ],
+      "anyOf": [
+        {
+          "$comment": "This is the schema for the top-level fields in a Collection.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/requirements"
+            },
+            {
+              "$ref": "#/definitions/fields"
+            }
+          ]
+        },
+        {
+          "$comment": "This is the schema for the fields in Collection Assets.",
           "required": [
-            "type"
+            "assets"
           ],
           "properties": {
-            "type": {
-              "const": "Collection"
-            },
             "assets": {
               "type": "object",
               "additionalProperties": {
                 "$ref": "#/definitions/fields"
               }
-            },
+            }
+          }
+        },
+        {
+          "$comment": "This is the schema for the fields in Item Asset Definitions.",
+          "required": [
+            "item_assets"
+          ],
+          "properties": {
             "item_assets": {
               "type": "object",
               "additionalProperties": {
@@ -68,13 +98,16 @@
           }
         },
         {
-          "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "$ref": "#/definitions/requirements"
-        },
-        {
-          "$ref": "#/definitions/fields"
+          "$comment": "This is the schema for the fields in Summaries.",
+          "required": [
+            "summaries"
+          ],
+          "properties": {
+            "summaries": {
+              "type": "object",
+              "$ref": "#/definitions/requirements"
+            }
+          }
         }
       ]
     }
