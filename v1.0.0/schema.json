@@ -34,12 +34,8 @@
             "assets": {
               "$comment": "This validates the fields in Item Assets, but does not require them.",
               "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "$ref": "#/definitions/fields"
-                  }
-                }
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
               }
             }
           }
