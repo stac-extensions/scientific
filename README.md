@@ -25,8 +25,11 @@ As these citation information are often closely bound to the Collection level an
 it is recommended adding the fields to the corresponding Collection.
 
 - Examples:
-  - [Item](examples/item.json): Shows the usage of the extension in a STAC Item
-  - [Collection](examples/collection.json): Shows the usage of the extension in a STAC Collection
+  - [Item](examples/item.json): The extension in a STAC Item
+  - [Collection](examples/collection.json): The extension in a STAC Collection
+  - [Collection (Assets)](examples/collection-assets.json): The extension in a STAC Collection with assets
+  - [Collection (Item Asset Definition)](examples/collection-item-assets.json): The extension in a STAC Collection in Item Asset Defintions
+  - [Collection (Summaries)](examples/collection-summaries.json): The extension in a STAC Collection in Summaries
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
