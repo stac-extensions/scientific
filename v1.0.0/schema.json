@@ -5,7 +5,7 @@
   "description": "Scientific Citation Extension for STAC Items and STAC Collections.",
   "oneOf": [
     {
-      "$comment": "This is the schema for STAC Items.",
+      "$comment": "This is the schema for STAC Items. Remove this object if this extension only applies to Collections.",
       "allOf": [
         {
           "$ref": "#/definitions/stac_extensions"
@@ -24,7 +24,7 @@
             "properties": {
               "allOf": [
                 {
-                  "$ref": "#/definitions/requirements"
+                  "$ref": "#/definitions/require_any_field"
                 },
                 {
                   "$ref": "#/definitions/fields"
@@ -32,6 +32,7 @@
               ]
             },
             "assets": {
+              "$comment": "This validates the fields in Item Assets, but does not require them.",
               "type": "object",
               "not": {
                 "additionalProperties": {
@@ -65,10 +66,10 @@
       ],
       "anyOf": [
         {
-          "$comment": "This is the schema for the top-level fields in a Collection.",
+          "$comment": "This is the schema for the top-level fields in a Collection. Remove this if this extension does not define top-level fields for Collections.",
           "allOf": [
             {
-              "$ref": "#/definitions/requirements"
+              "$ref": "#/definitions/require_any_field"
             },
             {
               "$ref": "#/definitions/fields"
@@ -76,7 +77,7 @@
           ]
         },
         {
-          "$comment": "This is the schema for the fields in Collection Assets.",
+          "$comment": "This validates the fields in Collection Assets, but does not require them.",
           "required": [
             "assets"
           ],
@@ -88,7 +89,7 @@
                   "not": {
                     "allOf": [
                       {
-                        "$ref": "#/definitions/requirements"
+                        "$ref": "#/definitions/require_any_field"
                       },
                       {
                         "$ref": "#/definitions/fields"
@@ -101,7 +102,7 @@
           }
         },
         {
-          "$comment": "This is the schema for the fields in Item Asset Definitions.",
+          "$comment": "This is the schema for the fields in Item Asset Definitions. It doesn't require any fields.",
           "required": [
             "item_assets"
           ],
@@ -111,7 +112,14 @@
               "not": {
                 "additionalProperties": {
                   "not": {
-                    "$ref": "#/definitions/fields"
+                    "allOf": [
+                      {
+                        "$ref": "#/definitions/require_any_field"
+                      },
+                      {
+                        "$ref": "#/definitions/fields"
+                      }
+                    ]
                   }
                 }
               }
@@ -119,13 +127,13 @@
           }
         },
         {
-          "$comment": "This is the schema for the fields in Summaries. by default, only checks the existance of the properties, but not the schema of the summaries.",
+          "$comment": "This is the schema for the fields in Summaries. By default, only checks the existance of the properties, but not the schema of the summaries.",
           "required": [
             "summaries"
           ],
           "properties": {
             "summaries": {
-              "$ref": "#/definitions/requirements"
+              "$ref": "#/definitions/require_any_field"
             }
           }
         }
@@ -146,6 +154,14 @@
           }
         }
       }
+    },
+    "require_any_field": {
+      "$comment": "Please list all fields here so that we can force the existance of one of them in other parts of the schemas.",
+      "anyOf": [
+        {"required": ["sci:doi"]},
+        {"required": ["sci:citation"]},
+        {"required": ["sci:publications"]}
+      ]
     },
     "fields": {
       "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
@@ -183,13 +199,6 @@
         "^(?!sci:)": {}
       },
       "additionalProperties": false
-    },
-    "requirements": {
-      "anyOf": [
-        {"required": ["sci:doi"]},
-        {"required": ["sci:citation"]},
-        {"required": ["sci:publications"]}
-      ]
     }
   }
 }
