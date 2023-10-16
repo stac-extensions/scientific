@@ -42,6 +42,8 @@ For Items, the fields are placed in the `properties`. For Collections, the field
 | sci:doi          | string               | The DOI of the data, e.g. `10.1000/xyz123`. This MUST NOT be a DOIs link. For all DOI names respective DOI links SHOULD be added to the links section (see chapter "Relation types"). |
 | sci:citation     | string               | The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively. |
 | sci:publications | [[Publication Object](#publication-object)] | List of relevant publications referencing and describing the data. |
+| sci:orcids        | \[string]            | An array of Open Researcher Contribution IDs ([ORCID](https://orcid.org)) associated with this product. For all ORCIDs a link SHOULD be added to the links section.     |
+| sci:ror s         | \[string]            | An array of Research Organization Record ([ROR](https://ror.org)) entity name or unique identifier. For all ROR(s) names and identifiers a link SHOULD be added to the links section. |
 
 *At least one of the fields must be specified.*
 
@@ -69,6 +71,7 @@ The following types should be used as applicable `rel` types in the
 
 | Type    | Description |
 | ------- | ----------- |
+| author | An ORCID link SHOULD be added to the links section for the author(s) referenced by the `sci:orcids` property with the `rel` type `author`. (see [rel type author](https://html.spec.whatwg.org/multipage/links.html#link-type-author)) |
 | cite-as | A DOI link SHOULD be added to the links section for the publication referenced by the `sci:doi` property with the `rel` type `cite-as` (see the [RFC 8574](https://tools.ietf.org/html/rfc8574)). |
 
 ## Contributing

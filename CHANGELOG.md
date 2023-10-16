@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
+- sci:rors and sci:orcids to the item properties and collection fields. Fixes [#10](https://github.com/stac-extensions/scientific/issues/10)
 ### Changed
 
 ### Deprecated

@@ -47,7 +47,9 @@
         "doi": "10.1038/sdata.2017.78",
         "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078."
       }
-    ]
+    ],
+    "sci:orcids": ["0000-0001-5115-0146","0000-0002-2232-428X"],
+    "sci:rors": ["00g0p6g84"]
   },
   "links": [
     {
