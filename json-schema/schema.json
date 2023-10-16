@@ -172,6 +172,22 @@
           "type": "string", 
           "title": "Proposed Data Citation"
         },
+        "sci:orcids": {
+          "type": "array", 
+          "title": "ORCID(s) for data producers.",
+          "minItems": 1,
+          "items": {
+            "type":"string"
+          }
+        },
+        "sci:rors": {
+          "type": "array", 
+          "title": "RoR for data producer institutions.",
+          "minItems": 1,
+          "items": {
+            "type":"string"
+          }
+        },
         "sci:publications": {
           "type": "array",
           "title": "Publications",
