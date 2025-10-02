@@ -39,7 +39,8 @@
   "sci:publications": [
     {
       "doi": "10.1038/sdata.2017.78",
-      "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078."
+      "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078.",
+      "acknowledgement": "The authors would like to acknowledge the NASA MERRA-2 project for providing the foundational data used in this study."
     }
   ],
   "links": [

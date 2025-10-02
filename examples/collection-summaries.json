@@ -41,11 +41,13 @@
     "sci:publications": [
       {
         "doi": "10.5061/dryad.s2v81.2",
-        "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) Data from: MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Dryad Digital Repository."
+        "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) Data from: MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Dryad Digital Repository.",
+        "acknowledgement": "We acknowledge the Dryad Digital Repository for their support in data curation and long-term archiving."
       },
       {
         "doi": "10.1038/sdata.2017.78",
-        "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078."
+        "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078.",
+        "acknowledgement": "This publication was made possible by the support of the European Research Council (ERC) and the feedback from anonymous reviewers."
       }
     ]
   },
