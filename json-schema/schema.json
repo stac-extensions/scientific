@@ -156,6 +156,7 @@
       "anyOf": [
         {"required": ["sci:doi"]},
         {"required": ["sci:citation"]},
+        {"required": ["sci:acknowledgement"]},
         {"required": ["sci:publications"]}
       ]
     },
@@ -172,6 +173,11 @@
           "type": "string", 
           "title": "Proposed Data Citation"
         },
+        "sci:acknowledgement": {
+          "type": "string",
+          "title": "Acknowledgement",
+          "description": "A statement recognizing contributions, support, or assistance from individuals or organizations, typically included in publications to express gratitude and identify those who have aided in the work. While no specific format is required, it should clearly identify the contributors and the nature of their support."
+        },        
         "sci:publications": {
           "type": "array",
           "title": "Publications",
@@ -186,7 +192,12 @@
               "citation": { 
                 "type": "string", 
                 "title": "Publication Citation"
-              }
+              },
+              "acknowledgement": {
+                "type": "string",
+                "title": "Acknowledgement",
+                "description": "A statement recognizing contributions, support, or assistance from individuals or organizations, typically included in publications to express gratitude and identify those who have aided in the work. While no specific format is required, it should clearly identify the contributors and the nature of their support."
+              }              
             }
           }
         }
