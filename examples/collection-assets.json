@@ -38,7 +38,8 @@
     "test": {
       "href": "example.xml",
       "type": "application/xml",
-      "sci:doi": "10.5061/dryad.s2v81.2"
+      "sci:doi": "10.5061/dryad.s2v81.2",
+      "sci:acknowledgement": "The XML dataset was prepared with the support of the Dryad Digital Repository and the technical assistance of the NASA MERRA-2 project."
     }
   },
   "links": [

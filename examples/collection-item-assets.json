@@ -38,7 +38,8 @@
     "primary": {
       "type": "application/zip",
       "title": "MERRAclim. 2_5m_min_80s",
-      "sci:doi": "10.5061/dryad.s2v81.2"
+      "sci:doi": "10.5061/dryad.s2v81.2",
+      "acknowledgement": "The primary dataset was prepared with the support of the Dryad Digital Repository and the NASA MERRA-2 project."
     }
   },
   "links": [

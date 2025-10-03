@@ -37,20 +37,22 @@ it is recommended adding the fields to the corresponding Collection.
 
 For Items, the fields are placed in the `properties`. For Collections, the fields are placed on the top level of the Collection.
 
-| Field Name       | Type                 | Description |
-| ---------------- | -------------------- | ----------- |
-| sci:doi          | string               | The DOI of the data, e.g. `10.1000/xyz123`. This MUST NOT be a DOIs link. For all DOI names respective DOI links SHOULD be added to the links section (see chapter "Relation types"). |
-| sci:citation     | string               | The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively. |
-| sci:publications | [[Publication Object](#publication-object)] | List of relevant publications referencing and describing the data. |
+| Field Name           | Type                 | Description |
+| -------------------- | -------------------- | ----------- |
+| sci:doi              | string               | The DOI of the data, e.g. `10.1000/xyz123`. This MUST NOT be a DOIs link. For all DOI names respective DOI links SHOULD be added to the links section (see chapter "Relation types"). |
+| sci:citation         | string               | The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively. |
+| sci:acknowledgement  | string               | A statement recognizing contributions, support, or assistance from individuals or organizations, typically included in publications to express gratitude and identify those who have aided in the work. While no specific format is required, it should clearly identify the contributors and the nature of their support. |
+| sci:publications     | [[Publication Object](#publication-object)] | List of relevant publications referencing and describing the data. |
 
 *At least one of the fields must be specified.*
 
 ### Publication Object
 
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
-| doi        | string | The DOI of a publication referencing the data. This MUST NOT be a DOIs link. |
-| citation   | string | Citation of a publication referencing the data. |
+| Field Name       | Type   | Description |
+| ---------------- | ------ | ----------- |
+| doi              | string | The DOI of a publication referencing the data. This MUST NOT be a DOIs link. |
+| citation         | string | Citation of a publication referencing the data. |
+| acknowledgement  | string | A statement recognizing contributions, support, or assistance from individuals or organizations, typically included in publications to express gratitude and identify those who have aided in the work. While no specific format is required, it should clearly identify the contributors and the nature of their support. |
 
 **doi** - The DOI name of a publication which describes and references the data. The publications
 should include more information about the data and how it was processed. This MUST NOT be a DOI
@@ -61,6 +63,11 @@ link. For all DOI names respective DOI links SHOULD be added to the links sectio
 the data. The publications should include more information about the data and how it was
 processed. No specific citation style is suggested, but a citation should contain all information
 required to find the publication distinctively.
+
+**acknowledgement** - A statement recognizing contributions, support, or assistance from individuals 
+or organizations, typically included in publications to express gratitude and identify those who have 
+aided in the work. While no specific format is required, it should clearly identify the contributors and 
+the nature of their support.
 
 ## Relation types
 
