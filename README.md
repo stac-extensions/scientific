@@ -1,9 +1,9 @@
 # Scientific Citation Extension Specification
 
 - **Title:** Scientific Citation
-- **Identifier:** <https://stac-extensions.github.io/scientific/v1.0.0/schema.json>
+- **Identifier:** <https://stac-extensions.github.io/scientific/v1.1.0/schema.json>
 - **Field Name Prefix:** sci
-- **Scope:** Item, Collection
+- **Scope:** Catalog, Collection, Item
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/README.md#extension-maturity):** Stable
 - **Owner**: @m-mohr
 - **History:** [Prior to March 30, 2021](https://github.com/radiantearth/stac-spec/commits/v1.0.0-rc.2/extensions/scientific)
@@ -19,23 +19,34 @@ persistent digital interoperable identifier that uniquely identify for digital p
 can be registered at registration agencies affiliated with the
 [International DOI Foundation](https://www.doi.org/).
 
-This extension applies to STAC [Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md)
-and STAC [Collections](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md).
+This extension applies to STAC [Catalogs](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec/catalog-spec.md),
+[Collections](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md)
+and [Items](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md).
+Following the STAC [common metadata](https://github.com/radiantearth/stac-spec/blob/master/commons/common-metadata.md) model,
+the fields can also be used in other places such as Assets, Links and Providers.
 As these citation information are often closely bound to the Collection level and therefore are shared across all items,
 it is recommended adding the fields to the corresponding Collection.
 
 - Examples:
-  - [Item](examples/item.json): The extension in a STAC Item
-  - [Collection](examples/collection.json): The extension in a STAC Collection
+  - [Catalog](examples/catalog.json): The extension in a STAC Catalog, incl. Links
+  - [Item](examples/item.json): The extension in a STAC Item, incl. Assets
+  - [Collection](examples/collection.json): The extension in a STAC Collection, incl. Providers and Links
   - [Collection (Assets)](examples/collection-assets.json): The extension in a STAC Collection with assets
   - [Collection (Item Asset Definition)](examples/collection-item-assets.json): The extension in a STAC Collection in Item Asset Defintions
   - [Collection (Summaries)](examples/collection-summaries.json): The extension in a STAC Collection in Summaries
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
-## Item Properties and Collection Fields
+## Fields
 
-For Items, the fields are placed in the `properties`. For Collections, the fields are placed on the top level of the Collection.
+The fields in the table below can be used in these parts of STAC documents:
+
+- [x] Catalogs
+- [x] Collections
+- [x] Item Properties (incl. Summaries in Collections)
+- [x] Assets (for both Collections and Items, incl. Item Asset Definitions in Collections)
+- [x] Links
+- [x] Providers (for both Collections and Items)
 
 | Field Name       | Type                 | Description |
 | ---------------- | -------------------- | ----------- |
@@ -43,7 +54,11 @@ For Items, the fields are placed in the `properties`. For Collections, the field
 | sci:citation     | string               | The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively. |
 | sci:publications | [[Publication Object](#publication-object)] | List of relevant publications referencing and describing the data. |
 
-*At least one of the fields must be specified.*
+The fields describe the entity they are placed in.
+If the fields are used at the top level of a Catalog or Collection, or in the `properties` of an Item,
+they refer to the data described by the STAC entity.
+If the fields are used in an Asset, Link or Provider, they refer to the asset, the linked resource or the data
+as published by the provider, respectively.
 
 ### Publication Object
 

@@ -1,7 +1,7 @@
 {
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    "https://stac-extensions.github.io/scientific/v1.1.0/schema.json"
   ],
   "id": "MERRAclim",
   "title": "MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling.",
@@ -34,6 +34,16 @@
       ]
     }
   },
+  "providers": [
+    {
+      "name": "Dryad Digital Repository",
+      "roles": [
+        "host"
+      ],
+      "url": "https://datadryad.org",
+      "sci:doi": "10.5061/dryad.s2v81.2"
+    }
+  ],
   "sci:doi": "10.5061/dryad.s2v81.2",
   "sci:citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) Data from: MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Dryad Digital Repository.",
   "sci:publications": [
@@ -58,6 +68,14 @@
     {
       "rel": "cite-as",
       "href": "https://doi.org/10.5061/dryad.s2v81.2"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://doi.org/10.1038/sdata.2017.78",
+      "type": "text/html",
+      "title": "MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling",
+      "sci:doi": "10.1038/sdata.2017.78",
+      "sci:citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078."
     }
   ]
 }
