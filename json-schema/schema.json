@@ -1,193 +1,204 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/scientific/v1.0.0/schema.json#",
+  "$id": "https://stac-extensions.github.io/scientific/v1.1.0/schema.json#",
   "title": "Scientific Citation Extension",
-  "description": "Scientific Citation Extension for STAC Items and STAC Collections.",
+  "description": "Scientific Citation Extension for STAC Catalogs, STAC Collections and STAC Items.",
+  "type": "object",
+  "required": [
+    "stac_extensions",
+    "type"
+  ],
+  "properties": {
+    "stac_extensions": {
+      "type": "array",
+      "contains": {
+        "const": "https://stac-extensions.github.io/scientific/v1.1.0/schema.json"
+      }
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Catalog",
+        "Collection",
+        "Feature"
+      ]
+    },
+    "assets": {
+      "$comment": "This validates the fields in Item and Collection Assets, but does not require them.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/fields"
+      }
+    },
+    "links": {
+      "$comment": "This validates the fields in Links, but does not require them.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fields"
+      }
+    },
+    "providers": {
+      "$comment": "This validates the fields in Providers of Collections, but does not require them.",
+      "$ref": "#/definitions/providers"
+    }
+  },
   "oneOf": [
     {
-      "$comment": "This is the schema for STAC Items. Remove this object if this extension only applies to Collections.",
-      "allOf": [
-        {
-          "$ref": "#/definitions/stac_extensions"
+      "$comment": "This validates the fields in Item Properties, including Providers.",
+      "type": "object",
+      "required": [
+        "type",
+        "properties"
+      ],
+      "properties": {
+        "type": {
+          "const": "Feature"
         },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "properties",
-            "assets"
-          ],
-          "properties": {
-            "type": {
-              "const": "Feature"
+        "properties": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/fields"
             },
-            "properties": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/require_any_field"
-                },
-                {
-                  "$ref": "#/definitions/fields"
+            {
+              "properties": {
+                "providers": {
+                  "$ref": "#/definitions/providers"
                 }
-              ]
-            },
-            "assets": {
-              "$comment": "This validates the fields in Item Assets, but does not require them.",
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
               }
             }
+          ]
+        }
+      }
+    },
+    {
+      "$comment": "This validates the top-level fields, Summaries and Item Asset Definitions in Collections.",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "Collection"
+        },
+        "summaries": {
+          "$ref": "#/definitions/summaries"
+        },
+        "item_assets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/fields"
           }
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/fields"
         }
       ]
     },
     {
-      "$comment": "This is the schema for STAC Collections.",
+      "$comment": "This validates the top-level fields in Catalogs.",
       "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "Catalog"
+        }
+      },
       "allOf": [
         {
-          "required": [
-            "type"
-          ],
-          "properties": {
-            "type": {
-              "const": "Collection"
-            }
-          }
-        },
-        {
-          "$ref": "#/definitions/stac_extensions"
-        }
-      ],
-      "anyOf": [
-        {
-          "$comment": "This is the schema for the top-level fields in a Collection. Remove this if this extension does not define top-level fields for Collections.",
-          "allOf": [
-            {
-              "$ref": "#/definitions/require_any_field"
-            },
-            {
-              "$ref": "#/definitions/fields"
-            }
-          ]
-        },
-        {
-          "$comment": "This validates the fields in Collection Assets, but does not require them.",
-          "required": [
-            "assets"
-          ],
-          "properties": {
-            "assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "allOf": [
-                      {
-                        "$ref": "#/definitions/require_any_field"
-                      },
-                      {
-                        "$ref": "#/definitions/fields"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "$comment": "This is the schema for the fields in Item Asset Definitions. It doesn't require any fields.",
-          "required": [
-            "item_assets"
-          ],
-          "properties": {
-            "item_assets": {
-              "type": "object",
-              "not": {
-                "additionalProperties": {
-                  "not": {
-                    "allOf": [
-                      {
-                        "$ref": "#/definitions/require_any_field"
-                      },
-                      {
-                        "$ref": "#/definitions/fields"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          "$comment": "This is the schema for the fields in Summaries. By default, only checks the existance of the properties, but not the schema of the summaries.",
-          "required": [
-            "summaries"
-          ],
-          "properties": {
-            "summaries": {
-              "$ref": "#/definitions/require_any_field"
-            }
-          }
+          "$ref": "#/definitions/fields"
         }
       ]
     }
   ],
   "definitions": {
-    "stac_extensions": {
+    "sci:doi": {
+      "type": "string",
+      "title": "Data DOI",
+      "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
+    },
+    "sci:citation": {
+      "type": "string",
+      "title": "Proposed Data Citation"
+    },
+    "sci:publications": {
+      "type": "array",
+      "title": "Publications",
+      "items": {
+        "$ref": "#/definitions/publication"
+      }
+    },
+    "publication": {
       "type": "object",
-      "required": [
-        "stac_extensions"
-      ],
       "properties": {
-        "stac_extensions": {
-          "type": "array",
-          "contains": {
-            "const": "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
-          }
+        "doi": {
+          "type": "string",
+          "title": "Publication DOI",
+          "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
+        },
+        "citation": {
+          "type": "string",
+          "title": "Publication Citation"
         }
       }
     },
-    "require_any_field": {
-      "$comment": "Please list all fields here so that we can force the existance of one of them in other parts of the schemas.",
-      "anyOf": [
-        {"required": ["sci:doi"]},
-        {"required": ["sci:citation"]},
-        {"required": ["sci:publications"]}
-      ]
-    },
     "fields": {
-      "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
+      "$comment": "Don't require fields here as they would be required in all places where we reference the fields as possibly allowed.",
       "type": "object",
       "properties": {
         "sci:doi": {
-          "type": "string",
-          "title": "Data DOI",
-          "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
-        }, 
+          "$ref": "#/definitions/sci:doi"
+        },
         "sci:citation": {
-          "type": "string", 
-          "title": "Proposed Data Citation"
+          "$ref": "#/definitions/sci:citation"
         },
         "sci:publications": {
-          "type": "array",
-          "title": "Publications",
+          "$ref": "#/definitions/sci:publications"
+        }
+      },
+      "patternProperties": {
+        "^(?!sci:)": {}
+      },
+      "additionalProperties": false
+    },
+    "providers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fields"
+      }
+    },
+    "summaries": {
+      "$comment": "Validates summaries provided as lists. JSON Schema (type: object) can always be provided for fields.",
+      "type": "object",
+      "properties": {
+        "sci:doi": {
+          "type": [
+            "array",
+            "object"
+          ],
           "items": {
-            "type": "object",
-            "properties": {
-              "doi": {
-                "type": "string",
-                "title": "Publication DOI",
-                "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
-              }, 
-              "citation": { 
-                "type": "string", 
-                "title": "Publication Citation"
-              }
-            }
+            "$ref": "#/definitions/sci:doi"
+          }
+        },
+        "sci:citation": {
+          "type": [
+            "array",
+            "object"
+          ],
+          "items": {
+            "$ref": "#/definitions/sci:citation"
+          }
+        },
+        "sci:publications": {
+          "type": [
+            "array",
+            "object"
+          ],
+          "items": {
+            "$ref": "#/definitions/publication"
           }
         }
       },

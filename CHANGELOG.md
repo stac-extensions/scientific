@@ -8,7 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- The extension can now be used in Catalogs ([#7](https://github.com/stac-extensions/scientific/issues/7))
+- The fields can be used in Links and Providers, which aligns with STAC common metadata ([#7](https://github.com/stac-extensions/scientific/issues/7))
+- JSON Schema validates Summaries
+
 ### Changed
+
+- None of the fields are required any longer ([#7](https://github.com/stac-extensions/scientific/issues/7))
+- Examples use STAC 1.1.0
 
 ### Deprecated
 
